@@ -15,7 +15,7 @@ abstract class AppTheme {
     textTheme: TextTheme(
       bodyLarge: TextStyle(
         color: Colors.white,
-        fontSize: 36,
+        fontSize: 24,
         fontWeight: .w400,
       ),
       bodyMedium: TextStyle(
@@ -25,7 +25,7 @@ abstract class AppTheme {
       ),
       bodySmall: TextStyle(
         color: Colors.white,
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: .w300,
       ),
     ),

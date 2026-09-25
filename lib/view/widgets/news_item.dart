@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/view/screens/details_screen.dart';
 
 class NewsItem extends StatelessWidget {
   const new({
@@ -13,19 +14,32 @@ class NewsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
-      child: Column(
-        spacing: 8,
-        crossAxisAlignment: .start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(8),
-            child: Image.network(image),
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailsScreen(
+            title: title,
+            continent: continent,
+            image: image,
+            description: "Ukrainian President Volodymyr Zelensky has accused European countries that continue to buy Russian oil ofearning their money in other people's blood",
           ),
-          Text(continent, style: Theme.of(context).textTheme.bodySmall),
-          Text(title, style: Theme.of(context).textTheme.bodyMedium),
-        ],
+        ),
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+        child: Column(
+          spacing: 8,
+          crossAxisAlignment: .start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(8),
+              child: Image.network(image),
+            ),
+            Text(continent, style: Theme.of(context).textTheme.bodySmall),
+            Text(title, style: Theme.of(context).textTheme.bodyMedium),
+          ],
+        ),
       ),
     );
   }
