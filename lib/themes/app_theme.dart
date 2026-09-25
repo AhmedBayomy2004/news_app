@@ -12,5 +12,22 @@ abstract class AppTheme {
         fontSize: 22,
       ),
     ),
+    textTheme: TextTheme(
+      bodyLarge: TextStyle(
+        color: Colors.white,
+        fontSize: 36,
+        fontWeight: .w400,
+      ),
+      bodyMedium: TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: .w400,
+      ),
+      bodySmall: TextStyle(
+        color: Colors.white,
+        fontSize: 12,
+        fontWeight: .w300,
+      ),
+    ),
   );
 }
