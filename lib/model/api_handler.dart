@@ -7,9 +7,7 @@ import 'package:new_app/utils/app_constants.dart';
 
 class ApiHandler {
   static Future<Result> getNews(String key) async {
-    Uri url = Uri.parse(
-      "${AppConstants.baseUrl}?q=keyword&apiKey=${AppConstants.apiKey}",
-    );
+    Uri url = Uri.parse("${AppConstants.baseUrl}?q=keyword&apiKey=$key");
     try {
       final response = await http.get(url);
 
@@ -43,10 +41,10 @@ sealed class Result<T> {
   new({required this.res});
 }
 
-class Success<T> extends Result {
+class Success extends Result<List<NewsModel>> {
   new({required super.res});
 }
 
-class Error<T> extends Result {
+class Error extends Result<String> {
   new({required super.res});
 }

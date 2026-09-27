@@ -4,13 +4,15 @@ import 'package:new_app/view/screens/details_screen.dart';
 class NewsItem extends StatelessWidget {
   const new({
     super.key,
-    required this.continent,
+    required this.author,
     required this.image,
     required this.title,
+    required this.description,
   });
-  final String continent;
+  final String author;
   final String image;
   final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,9 @@ class NewsItem extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) => DetailsScreen(
             title: title,
-            continent: continent,
+            continent: author,
             image: image,
-            description: "Ukrainian President Volodymyr Zelensky has accused European countries that continue to buy Russian oil ofearning their money in other people's blood",
+            description: description,
           ),
         ),
       ),
@@ -36,7 +38,7 @@ class NewsItem extends StatelessWidget {
               borderRadius: BorderRadiusGeometry.circular(8),
               child: Image.network(image),
             ),
-            Text(continent, style: Theme.of(context).textTheme.bodySmall),
+            Text(author, style: Theme.of(context).textTheme.bodySmall),
             Text(title, style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
