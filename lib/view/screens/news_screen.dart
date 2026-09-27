@@ -1,19 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_app/view/widgets/news_item.dart';
+import 'package:new_app/view_model/news_cubit.dart';
+import 'package:new_app/view_model/news_state.dart';
 
 class NewsScreen extends StatelessWidget {
   const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("News App")),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => NewsItem(
-          continent: "continent",
-          image: "https://static.vecteezy.com/system/resources/thumbnails/050/393/628/small/cute-curious-gray-and-white-kitten-in-a-long-shot-photo.jpg",
-          title: "Russian warship: Moskva sinks in Black Sea",
+    return BlocProvider(
+      create: (context) => NewsCubit()..getArticles(),
+      child: Scaffold(
+        appBar: AppBar(title: Text("News App")),
+        body: BlocBuilder<NewsCubit, NewsState>(
+          builder: (context, state) {
+            //success
+            if (state is NewsSuccess) {
+              final data = state.data;
+              return ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, index) => NewsItem(
+                  author: data[index].author,
+                  image: data[index].image,
+                  title: data[index].title,
+                  description: data[index].description,
+                ),
+              );
+            }
+            //error
+            else if (state is NewsError) {
+              final error = state.error;
+              return Center(
+                child: Text(
+                  error,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              );
+            }
+            //loading
+            return Center(child: CircularProgressIndicator());
+          },
         ),
       ),
     );

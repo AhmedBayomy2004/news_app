@@ -3,7 +3,9 @@ import 'package:new_app/view/screens/news_screen.dart';
 import 'package:new_app/themes/app_theme.dart';
 
 void main() {
+  
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
